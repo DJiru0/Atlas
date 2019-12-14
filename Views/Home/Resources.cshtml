@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Atlas.Models.AltasModel.Resource>
+
+@{
+    ViewBag.Title = "Resources";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Resources</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateResource")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Attendee.AttendeeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResourceType.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Attendee.AttendeeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResourceType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ResourceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ResourceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ResourceId })
+        </td>
+    </tr>
+}
+
+</table>
