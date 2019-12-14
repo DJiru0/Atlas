@@ -38,39 +38,176 @@
         </th>
         <th></th>
     </tr>
+    <tr><td colspan="9"></td></tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProposalName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MeetingDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Priority)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.MeetingId }) |*@
-            @Html.ActionLink("Details", "Details", new { id=item.MeetingId }) |
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.MeetingId })*@
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr style="border-top: #eaeef1 2px solid;
+    border-right: #eaeef1 2px solid;
+    border-left: #eaeef1 2px solid;">
+            <td>
+               
+                <a href="@Url.Action("MeetingDetail", "Home", new { id = item.MeetingId })" >
+                    <span>@item.Name</span>
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProposalName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeetingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.MeetingId }) |*@
+                @*@Html.ActionLink("MeetingDetail", "Home", new { id = item.MeetingId })*@
+
+                @*<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        View Attendees
+                    </button>*@
+                @*@Html.ActionLink("View Attendees", "Delete", new { id = item.MeetingId, @class = "btn btn-warning" })*@
+                <a data-toggle="collapse" data-target="#@item.MeetingId" aria-expanded="false" aria-controls="collapseExample" class="btn btn-success btn-sm">
+                    <span>Select</span>
+                </a> 
+            </td>
+        </tr>
+        <tr class="collapse" id="@item.MeetingId" style="border-bottom: #eaeef1 2px solid;
+    border-right: #eaeef1 2px solid;
+    border-left: #eaeef1 2px solid;">
+            <td colspan="5">
+                @*@Html.DisplayFor(modelItem => item.ReqResources.Location)*@
+                @*<p>Attendees</p>*@
+
+                <div>
+                    <div class="card card-body ">
+                        @using (Html.BeginForm("RequestResource", "Home"))
+                        {
+                            <table style="padding:2vh;width: 100%;margin-left:3vh">
+                                <tr>
+                                    <td>Required Resource</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                        <ul style="list-style-type:none">
+                                            @foreach (var i in item.ReqResources)
+                                            {
+                                                <li> <input type="checkbox" name="RequestedItems" value="@i.ResourceTypeId" />@i.ResourceType.Name</li>
+                                            }
+                                        </ul>
+
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                            }
+                        &nbsp; &nbsp; &nbsp; <a class="btn btn-primary btn-sm">
+                            <span>Reserve</span>
+                        </a>
+                    </div>
+                </div>
+                @*<table style="padding:2vh">
+                        <tr>
+                            <td>Name</td>
+                            <td>Meeting Name</td>
+                            <td>Attendee</td>
+                            <td>Attendee</td>
+                        </tr>
+                        @foreach (var i in item.Attendees)
+                        {
+                            <tr>
+                                <td>i.Meeting.Name</td>
+                                <td>i.ResourceType.Name</td>
+                                <td>i.Meeting.Name</td>
+                                <td>i.ResourceType.Name</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                        </tr>
+                        <tr>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                        </tr>
+                        <tr>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                        </tr>
+
+                    </table>*@
+            </td>
+            <td colspan="7">
+                @*@Html.DisplayFor(modelItem => item.ReqResources.Location)*@
+                @*<p>Attendees</p>*@
+
+                <div>
+
+                </div>
+                @*<table style="padding:2vh">
+                        <tr>
+                            <td>Name</td>
+                            <td>Meeting Name</td>
+                            <td>Attendee</td>
+                            <td>Attendee</td>
+                        </tr>
+                        @foreach (var i in item.Attendees)
+                        {
+                            <tr>
+                                <td>i.Meeting.Name</td>
+                                <td>i.ResourceType.Name</td>
+                                <td>i.Meeting.Name</td>
+                                <td>i.ResourceType.Name</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                        </tr>
+                        <tr>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                        </tr>
+                        <tr>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                            <td>i.Meeting.Name</td>
+                            <td>i.ResourceType.Name</td>
+                        </tr>
+
+                    </table>*@
+            </td>
+        </tr>
+
+        <tr><td colspan="9"></td></tr>
+    }
 
 </table>

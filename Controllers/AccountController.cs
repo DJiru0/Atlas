@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Atlas.Models.AltasModel;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -17,6 +18,7 @@ namespace Atlas.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private dbContext db = new dbContext();
 
         public AccountController()
         {
@@ -155,6 +157,17 @@ namespace Atlas.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+                    try
+                    {
+                        User DBuser = new User { Name = model.Name, UserTypeID = model.UserTypeId, Email = model.Email };
+                        db.Users.Add(DBuser);
+                    }
+                    catch (Exception e)
+                    {
+                        // Add Logging
+                    }
+                    //ViewBag.userTypes = model.UserTypes;
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

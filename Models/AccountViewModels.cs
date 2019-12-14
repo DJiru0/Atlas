@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Atlas.Models.AltasModel;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Atlas.Models
 {
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -48,6 +51,7 @@ namespace Atlas.Models
 
     public class LoginViewModel
     {
+        private dbContext db = new dbContext();
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
@@ -57,6 +61,9 @@ namespace Atlas.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+
+ 
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
@@ -77,8 +84,36 @@ namespace Atlas.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.Web.Mvc.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
+        [Required]
+        [Display(Name = "User Type")]
+        public int UserTypeId { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Full Name")]
+        public string Name { get; set; }
+
+        //[Display(Name = "User Type")]
+        //public List<SelectListItem> UserTypes { get; set; }
+
+        //public RegisterViewModel()
+        //{
+        //    this.UserTypes = new List<SelectListItem>{
+        //         new SelectListItem{ Value="1",Text="Monday"},
+        //         new SelectListItem{ Value="2",Text="Tuesday"},
+        //         new SelectListItem{ Value="3",Text="Wednesday"},
+        //         new SelectListItem{ Value="4",Text="Thrusday"},
+        //         new SelectListItem{ Value="5",Text="Friday"},
+        //         new SelectListItem{ Value="6",Text="Saturday"},
+        //         new SelectListItem{ Value="7",Text="Sunday"},
+        //     };
+
+
+        //}
     }
 
     public class ResetPasswordViewModel
@@ -96,7 +131,7 @@ namespace Atlas.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

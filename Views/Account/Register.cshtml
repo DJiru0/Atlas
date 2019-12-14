@@ -12,6 +12,27 @@
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
+        @Html.LabelFor(m => m.Name, "Enter Full Name", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserTypeId, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @*@Html.DropDownListFor(m => m.UserTypeId, (SelectList)ViewBag.userTypes)*@
+            <select class="form-control" name="UserTypeId">
+                <option selected disabled>Select User Type</option>
+                <option value="1">CIO</option>
+                <option value="2">Director</option>
+                <option value="3">Analyst</option>
+                <option value="4">Manager</option>
+            </select>
+            @Html.ValidationMessageFor(m => m.UserTypeId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })

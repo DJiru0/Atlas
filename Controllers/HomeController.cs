@@ -64,6 +64,13 @@ namespace Atlas.Controllers
             return View();
         }
 
+        
+        [Authorize]
+        public ActionResult RequestResource(List<int> id)
+        {
+
+            return View("MyRequests", db.Resources.Where(r => r.Attendee.UserId == 1));
+        }
 
         [Authorize]
         public ActionResult MeetingDetail(int id)
