@@ -78,9 +78,15 @@ namespace Atlas.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var RegisteredUser = SignInManager.UserManager.FindByEmail(model.Email);
+            //Extract userid from user Details.
+            var userid = RegisteredUser.Id;
             switch (result)
             {
                 case SignInStatus.Success:
+                    Session["user_id"] = userid;
+                    var person = db.Users.Where(u => u.ApplicationUserId == userid).FirstOrDefault();
+                    Session["user_type"] = person.UserTypeID;
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -158,18 +164,26 @@ namespace Atlas.Controllers
                 if (result.Succeeded)
                 {
 
+                    
+                    //ViewBag.userTypes = model.UserTypes;
+                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     try
                     {
-                        User DBuser = new User { Name = model.Name, UserTypeID = model.UserTypeId, Email = model.Email };
+                        var userId = User.Identity.GetUserId();
+                        var RegisteredUser = SignInManager.UserManager.FindByEmail(model.Email);
+                        //Extract userid from user Details.
+                        var userid = RegisteredUser.Id;
+                        Session["user_id"] = userid;
+                        Session["user_type"] = model.UserTypeId;
+                        User DBuser = new User { Name = model.Name, UserTypeID = model.UserTypeId, Email = model.Email, ApplicationUserId = userid };
                         db.Users.Add(DBuser);
+                        db.SaveChanges();
+
                     }
                     catch (Exception e)
                     {
                         // Add Logging
                     }
-                    //ViewBag.userTypes = model.UserTypes;
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -404,6 +418,7 @@ namespace Atlas.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            Session["user_id"] = "";
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }

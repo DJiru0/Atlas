@@ -4,11 +4,13 @@
     ViewBag.Title = "ReviewMeetings";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<br /><br />
 <h2>ReviewMeetings</h2>
 
+<a class="btn btn-primary" href="https://public.tableau.com/profile/lcg.analyst1743#!/vizhome/ProjectAtlas/Dashboard1">View Dashboard</a>
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
     <tr>
@@ -41,139 +43,184 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProposalName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MeetingDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Priority)
-            </td>
-            <td><p>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        View Attendees
-    </button>
-</p>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="9">
-                @*@Html.DisplayFor(modelItem => item.ReqResources.Location)*@
-                @*<p>Attendees</p>*@
-                
-                <div class="collapse" id="collapseExample">
-                    <div class="card card-body">
-                        <table style="padding:2vh;width: 100%;">
-            <tr>
-                <td>Name</td>
-                <td>Meeting Name</td>
-                <td>Attendee</td>
-                <td>Attendee</td>
-            </tr>
-            @foreach (var i in item.Attendees)
-            {
-                        <tr>
-                            <td>i.Meeting.Name</td>
-                            <td>i.ResourceType.Name</td>
-                            <td>i.Meeting.Name</td>
-                            <td>
-                                @Html.ActionLink("Approve", "Edit", new { id = item.MeetingId }, new { @class = "btn btn-success" }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.MeetingId }, new { @class = "btn btn-primary" }) |
-                                @Html.ActionLink("Deny", "Delete", new { id = item.MeetingId }, new { @class = "btn btn-danger" })
-                            </td>
-                        </tr>
-            }
-                        <tr>
-                            <td>i.Meeting.Name</td>
-                            <td>i.ResourceType.Name</td>
-                            <td>i.Meeting.Name</td>
-                            <td>
-                                @Html.ActionLink("Approve", "Edit", new { id = item.MeetingId }, new { @class = "btn btn-success" }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.MeetingId }, new { @class = "btn btn-primary" }) |
-                                @Html.ActionLink("Deny", "Delete", new { id = item.MeetingId }, new { @class = "btn btn-danger" })
-                            </td>
-                        </tr>
-            <tr>
-                <td>i.Meeting.Name</td>
-                <td>i.ResourceType.Name</td>
-                <td>i.Meeting.Name</td>
-                <td>
-                    @Html.ActionLink("Approve", "Edit", new { id = item.MeetingId }, new { @class = "btn btn-success" }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.MeetingId }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Deny", "Delete", new { id = item.MeetingId }, new { @class = "btn btn-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>i.Meeting.Name</td>
-                <td>i.ResourceType.Name</td>
-                <td>i.Meeting.Name</td>
-                <td>
-                    @Html.ActionLink("Approve", "Edit", new { id = item.MeetingId }, new { @class = "btn btn-success" }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.MeetingId }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Deny", "Delete", new { id = item.MeetingId }, new { @class = "btn btn-danger" })
-                </td>
-            </tr>
+       
 
-        </table>
+            <tr style="border-top: #eaeef1 2px solid;
+    border-right: #eaeef1 2px solid;
+    border-left: #eaeef1 2px solid;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProposalName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeetingDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Priority)
+                </td>
+                <td colspan="2">
+                    <p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#@item.MeetingId" aria-expanded="false" aria-controls="collapseExample">
+                            View Attendees
+                        </button>
+                    </p>
+                </td>
+            </tr>
+            <tr style="border-bottom: #eaeef1 2px solid;
+    border-right: #eaeef1 2px solid;
+    border-left: #eaeef1 2px solid;">
+                <td colspan="9" style="border-top:none" >
+                    @*@Html.DisplayFor(modelItem => item.ReqResources.Location)*@
+                    @*<p>Attendees</p>*@
+
+                    <div class="collapse" id="@item.MeetingId">
+                        <div class="card card-body">
+                            <table style="padding:2vh;width: 100%;">
+                                <tr>
+                                    <td>Attendee Name</td>
+                                    <td>Email</td>
+                                    <td colspan="2">Requested Resource</td>
+                                </tr>
+                                @foreach (var i in item.Attendees)
+                                {
+                                    <tr>
+                                        <td>@i.User.Name</td>
+                                        <td>@i.User.Email</td>
+                                        <td>
+                                            <table class="table">
+
+                                                @foreach (var t in @i.Resources)
+                                                {
+                                                <tr>
+                                                    <td>
+                                                        @t.Name
+                                                    </td>
+                                                    <td>
+                                                        @t.ResourceType.Name
+                                                    </td>
+                                                    @if (@t.StatusId != 3)
+                                                    {
+
+                                                        <td colspan="1">
+                                                            @Html.ActionLink("Approve", "ApproveResource", new { id = t.ResourceId }, new { @class = "btn btn-info" }) |
+                                                            @*@Html.ActionLink("Details", "Details", new { id = item.MeetingId }, new { @class = "btn btn-primary" }) |*@
+                                                            @Html.ActionLink("Deny", "DenyResource", new { id = t.ResourceId }, new { @class = "btn btn-danger" })
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td colspan="1">
+                                                           <p  class="btn btn-sm btn-success"> Approved</p>
+                                                        </td>
+                                                    }
+                                                </tr>
+                                                }
+
+                                                @if (@i.Resources.Count == 0)
+                                                {
+                                                    <tr><td>None Requested</td></tr>
+                                                }
+                                            </table>
+                                        </td>
+                                        @*<td>
+                                                @Html.ActionLink("Approve", "Edit", new { id = item.MeetingId }, new { @class = "btn btn-success" }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.MeetingId }, new { @class = "btn btn-primary" }) |
+                                                @Html.ActionLink("Deny", "Delete", new { id = item.MeetingId }, new { @class = "btn btn-danger" })
+                                            </td>*@
+                                    </tr>
+                                }
+                                @*<tr>
+                                                    <td>i.Meeting.Name</td>
+                                                    <td>i.ResourceType.Name</td>
+                                                    <td>i.Meeting.Name</td>
+                                                    <td>
+                                                        @Html.ActionLink("Approve", "Edit", new { id = item.MeetingId }, new { @class = "btn btn-success" }) |
+                                                        @Html.ActionLink("Details", "Details", new { id = item.MeetingId }, new { @class = "btn btn-primary" }) |
+                                                        @Html.ActionLink("Deny", "Delete", new { id = item.MeetingId }, new { @class = "btn btn-danger" })
+                                                    </td>
+                                                </tr>
+                                    <tr>
+                                        <td>i.Meeting.Name</td>
+                                        <td>i.ResourceType.Name</td>
+                                        <td>i.Meeting.Name</td>
+                                        <td>
+                                            @Html.ActionLink("Approve", "Edit", new { id = item.MeetingId }, new { @class = "btn btn-success" }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.MeetingId }, new { @class = "btn btn-primary" }) |
+                                            @Html.ActionLink("Deny", "Delete", new { id = item.MeetingId }, new { @class = "btn btn-danger" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>i.Meeting.Name</td>
+                                        <td>i.ResourceType.Name</td>
+                                        <td>i.Meeting.Name</td>
+                                        <td>
+                                            @Html.ActionLink("Approve", "Edit", new { id = item.MeetingId }, new { @class = "btn btn-success" }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.MeetingId }, new { @class = "btn btn-primary" }) |
+                                            @Html.ActionLink("Deny", "Delete", new { id = item.MeetingId }, new { @class = "btn btn-danger" })
+                                        </td>
+                                    </tr>*@
+
+                            </table>
+                        </div>
                     </div>
-                </div>
-                @*<table style="padding:2vh">
-            <tr>
-                <td>Name</td>
-                <td>Meeting Name</td>
-                <td>Attendee</td>
-                <td>Attendee</td>
-            </tr>
-            @foreach (var i in item.Attendees)
-            {
-                <tr>
-                    <td>i.Meeting.Name</td>
-                    <td>i.ResourceType.Name</td>
-                    <td>i.Meeting.Name</td>
-                    <td>i.ResourceType.Name</td>
-                </tr>
-            }
-            <tr>
-                <td>i.Meeting.Name</td>
-                <td>i.ResourceType.Name</td>
-                <td>i.Meeting.Name</td>
-                <td>i.ResourceType.Name</td>
-            </tr>
-            <tr>
-                <td>i.Meeting.Name</td>
-                <td>i.ResourceType.Name</td>
-                <td>i.Meeting.Name</td>
-                <td>i.ResourceType.Name</td>
-            </tr>
-            <tr>
-                <td>i.Meeting.Name</td>
-                <td>i.ResourceType.Name</td>
-                <td>i.Meeting.Name</td>
-                <td>i.ResourceType.Name</td>
+                    @*<table style="padding:2vh">
+                            <tr>
+                                <td>Name</td>
+                                <td>Meeting Name</td>
+                                <td>Attendee</td>
+                                <td>Attendee</td>
+                            </tr>
+                            @foreach (var i in item.Attendees)
+                            {
+                                <tr>
+                                    <td>i.Meeting.Name</td>
+                                    <td>i.ResourceType.Name</td>
+                                    <td>i.Meeting.Name</td>
+                                    <td>i.ResourceType.Name</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td>i.Meeting.Name</td>
+                                <td>i.ResourceType.Name</td>
+                                <td>i.Meeting.Name</td>
+                                <td>i.ResourceType.Name</td>
+                            </tr>
+                            <tr>
+                                <td>i.Meeting.Name</td>
+                                <td>i.ResourceType.Name</td>
+                                <td>i.Meeting.Name</td>
+                                <td>i.ResourceType.Name</td>
+                            </tr>
+                            <tr>
+                                <td>i.Meeting.Name</td>
+                                <td>i.ResourceType.Name</td>
+                                <td>i.Meeting.Name</td>
+                                <td>i.ResourceType.Name</td>
+                            </tr>
+
+                        </table>*@
+                </td>
+                <td>
+                </td>
             </tr>
 
-        </table>*@
-            </td>
-            <td>
-            </td>
-        </tr>
+            <tr><td style="border-top:none" colspan="9"></td></tr>
+        
+
     }
 
 </table>

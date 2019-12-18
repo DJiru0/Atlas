@@ -19,9 +19,9 @@ namespace Atlas.Models.AltasModel
 
         public int ResourceTypeId { get; set; }
 
-        public int AttendeeId { get; set; }
+        public int? AttendeeId { get; set; }
 
-        public int MeetingId { get; set; }
+        public int? MeetingId { get; set; }
 
         public virtual Meeting Meeting { get; set; }
 

@@ -21,6 +21,8 @@ namespace Atlas.Models.AltasModel
         [StringLength(100)]
         public string Name { get; set; }
 
+        public string ApplicationUserId { get; set; }
+
         public int UserTypeID { get; set; }
 
         [Required]

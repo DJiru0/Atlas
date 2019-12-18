@@ -1,0 +1,71 @@
+﻿<script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+<script type="text/javascript">
+    (function () {
+        BotChat.App({
+            directLine: {
+                secret: 'sAPasVoxRK8.qZGkdRD5Vt0Ks52szVmdw1I7qSZplReEpaBhNRrsRj4'
+            },
+            user: { id: 'Atlas User' },
+            username: 'Web Chat User',
+            locale: 'en-US',
+            botAvatarInitials: 'WC',
+            userAvatarInitials: 'WW',
+            resize: 'detect'
+            //,
+            //styleOptions: { showUploadButton: false }
+        }, document.getElementById("bot"));
+        console.log(document.getElementsByClassName('wc-header'));
+        document.getElementsByClassName('wc-header')[0].innerHTML = '<span class="wc-headerFonts">Online Support</span> <span class="wc-headerFonts" style="float:right;">&#43; </span>'; 
+        $('.wc-message-group-content').append(
+            "<div class='wc-message-wrapper list' data-activity-id='first-message'>" +
+            "<div class='wc-message wc-message-from-bot'>" +
+            "<div class='wc-message-content'>" +
+            "<svg class='wc-message-callout'>" +
+            "<path class='point-left' d='m0,6 l6 6 v-12 z'></path>" +
+            "<path class='point-right' d='m6,6 l-6 6 v-12 z'></path>" +
+            "</svg>" +
+            "<div>" +
+            "<div class='format-markdown'>" +
+            "<p>Hi! Welcome to Atlas! This is Athena, your personal assistant for today. How can I help you?</p>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "<div class='wc-message-from wc-message-from-bot'><span>Athena</span>" +
+            "</div>" +
+            "</div>");
+
+        
+        document.querySelector('body').addEventListener('click', function (e) {
+            e.target.matches = e.target.matches || e.target.msMatchesSelector;
+            console.log((e.target));
+            if (e.target.matches('.wc-header')) {
+                console.log("clicked");
+                var botDiv = document.querySelector('#botDiv');
+                botDiv.style.height = botDiv.style.height == '500px' ? '32px' : '500px';
+                botDiv.style.backgroundColor = botDiv.style.height == '500px' ? 'white' : 'transparent';
+                document.getElementsByClassName('wc-header')[0].innerHTML = botDiv.style.height == '500px' ? '<span class="wc-headerFonts">Online Support</span> <span class="wc-headerFonts" style="float:right;">&#8722;</span>' : '<span class="wc-headerFonts">Online Support</span> <span class="wc-headerFonts" style="float:right;">&#43; </span>';
+            };
+
+            if (e.target.matches('.wc-headerFonts')) {
+                console.log("clicked");
+                var botDiv = document.querySelector('#botDiv');
+                botDiv.style.height = botDiv.style.height == '500px' ? '32px' : '500px';
+                botDiv.style.backgroundColor = botDiv.style.height == '500px' ? 'white' : 'transparent';
+                document.getElementsByClassName('wc-header')[0].innerHTML = botDiv.style.height == '500px' ? '<span class="wc-headerFonts">Online Support</span> <span class="wc-headerFonts" style="float:right;">&#8722;</span>' : '<span class="wc-headerFonts">Online Support</span> <span class="wc-headerFonts" style="float:right;">&#43; </span>';
+            };
+        });
+
+      //  $(".has-upload-button").switchClass("has-upload-button", " ");
+    }());
+
+
+    // $(".has-upload-button").removeClass();
+    $(".wc-upload").remove();
+    $("#wc-upload-input").remove();
+    //$(".has-upload-button").remove();
+    //$(".wc-console has-upload-button").switchClass(".wc-console .has-upload-button", ".wc-console");
+    // $(".has-upload-button").switchClass("has-upload-button", " ");
+    
+  
+</script>

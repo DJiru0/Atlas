@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StatusId, "StatusId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("StatusId", ViewBag.Statuses as SelectList, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ResourceTypeId, "ResourceTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ResourceTypeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ResourceTypeId",  ViewBag.Resources as SelectList, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ResourceTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,8 +43,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AttendeeId, "AttendeeId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("AttendeeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("AttendeeId",ViewBag.Attendees as SelectList, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.AttendeeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MeetingId, "MeetingId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MeetingId", ViewBag.Meetings as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MeetingId, "", new { @class = "text-danger" })
             </div>
         </div>
 

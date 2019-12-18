@@ -185,6 +185,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Filter\RoleFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,6 +201,9 @@
     <Compile Include="Models\AltasModel\UserType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Service\LoggingService.cs" />
+    <Compile Include="Models\Service\RepoService.cs" />
+    <Compile Include="Models\Service\SMSservice.cs" />
     <Compile Include="Models\ViewModel\MeetingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -265,6 +269,12 @@
     <Content Include="Views\Home\Resources.cshtml" />
     <Content Include="Views\Home\CreateResource.cshtml" />
     <Content Include="Views\Home\ReviewMeetings.cshtml" />
+    <Content Include="Views\Home\EditResource.cshtml" />
+    <Content Include="Views\Home\RemoveResource.cshtml" />
+    <Content Include="Views\Home\ResourceDetails.cshtml" />
+    <Content Include="Views\Home\Reservation.cshtml" />
+    <Content Include="Views\Shared\_BotGeneration.cshtml" />
+    <Content Include="Views\Shared\_BotStylePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

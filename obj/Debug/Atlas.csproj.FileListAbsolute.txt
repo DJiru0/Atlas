@@ -104,7 +104,7 @@ C:\Users\jirudg\Documents\LCg\Atlas\Atlas\bin\Microsoft.Owin.Security.Twitter.xm
 C:\Users\jirudg\Documents\LCg\Atlas\Atlas\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\jirudg\Documents\LCg\Atlas\Atlas\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\jirudg\Documents\LCg\Atlas\Atlas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\jirudg\Documents\LCg\Atlas\Atlas\obj\Debug\Atlas.csprojAssemblyReference.cache
 C:\Users\jirudg\Documents\LCg\Atlas\Atlas\obj\Debug\Atlas.csproj.CopyComplete
 C:\Users\jirudg\Documents\LCg\Atlas\Atlas\obj\Debug\Atlas.dll
 C:\Users\jirudg\Documents\LCg\Atlas\Atlas\obj\Debug\Atlas.pdb
+C:\Users\jirudg\Documents\LCg\Atlas\Atlas\obj\Debug\Atlas.csprojAssemblyReference.cache
