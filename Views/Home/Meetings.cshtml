@@ -6,7 +6,7 @@
 }
 <br />
 <h2>Meetings</h2>
-@if (Session["user_type"].ToString() == "6")
+@if (Session["user_type"].ToString() == "2")
 {
     <p>
         @Html.ActionLink("Upload Excel", "UploadExcel")
@@ -104,31 +104,49 @@
                         {
 
                             <input type="hidden" name="MeetingId" id="MeetingId" value="@item.MeetingId" />
-                            <table style="padding:2vh;width: 100%;margin-left:3vh">
-                                <tr>
-                                    <td>Required Resource</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>
+                            if (item.ReqResources.Count() != 0)
+                            {
+                                <table style="padding:2vh;width: 100%;margin-left:3vh">
+                                    <tr>
+                                        <td>Required Resource</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
 
-                                        <ul style="list-style-type:none">
-                                            @foreach (var i in item.ReqResources)
-                                            {
-                                                <li> <input type="checkbox" checked name="RequestedItems" value="@i.ResourceTypeId" />@i.ResourceType.Name</li>
-                                            }
-                                        </ul>
+                                            <ul style="list-style-type:none">
+                                                @foreach (var i in item.ReqResources)
+                                                {
+                                                    <li> <input type="checkbox" checked name="RequestedItems" value="@i.ResourceTypeId" />@i.ResourceType.Name</li>
+                                                }
+                                            </ul>
 
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
 
 
-                            </table>
-                            <button type="submit" class="btn btn-primary btn-sm">
-                                <span>Reserve</span>
-                            </button>
+                                </table>
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <span>Reserve</span>
+                                </button>
+
+                            }
+                            else
+                            {
+
+                                <table style="padding:2vh;width: 100%;margin-left:3vh">
+                                    <tr>
+                                        <td>No Required Resource</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+
+
+                                </table> 
+                            }
                         }
                     </div>
                 </div>

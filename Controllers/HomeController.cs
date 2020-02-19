@@ -46,15 +46,24 @@ namespace Atlas.Controllers
         [RoleAuthorize]
         public ActionResult Meetings()
         {
+            var list = db.Meetings.ToList();
+            var reqResource = db.ReqResources.ToList();
             // logs.WriteLog("Meetings is being viewed");
-            return View(db.Meetings.ToList());
+            return View(list);
         }
         [RoleAuthorize]
         public ActionResult Reservation()
         {
+            string uniqueId = Session["user_id"].ToString();
+            User user = db.Users.Where(r => r.ApplicationUserId == uniqueId).FirstOrDefault();
+            int attendeeid = 0;
+            if (user != null)
+            {
+                attendeeid = user.UserId;
+            }
+                IQueryable<Meeting> items = db.Meetings;
 
-            IQueryable<Meeting> items = db.Meetings;
-            var ids = db.Resources.Where(s => s.StatusId == 2 || s.StatusId == 3).Select(s => s.MeetingId).ToList();
+            var ids = db.Resources.Where(s => s.StatusId == 2 || s.StatusId == 3).Where(r=> r.AttendeeId == attendeeid).Select(s => s.MeetingId).ToList();
 
             var Mids = db.Resources.Where(s => s.StatusId == 3).Select(s => s.MeetingId).ToList();
             var meetings = (from a in items
@@ -212,7 +221,7 @@ namespace Atlas.Controllers
                     {
                         res.StatusId = 2;
                         res.MeetingId = MeetingId;
-                        res.AttendeeId = user.Attendees.Where(r => r.MeetingId == MeetingId && r.UserId == user.UserId).FirstOrDefault().AttendeeId;
+                        res.AttendeeId = user.Attendees.Where(r => r.MeetingId == MeetingId && r.UserId == user.UserId).FirstOrDefault().UserId;
                         // logs.WriteLog(res.ResourceType.Name + " Resource has been requested by " + user.Name);
                         db.SaveChanges();
                     }

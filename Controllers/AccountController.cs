@@ -86,8 +86,12 @@ namespace Atlas.Controllers
                 case SignInStatus.Success:
                     Session["user_id"] = userid;
                     var person = db.Users.Where(u => u.ApplicationUserId == userid).FirstOrDefault();
-                    Session["user_type"] = person.UserTypeID;
-                    return RedirectToLocal(returnUrl);
+                    if(person != null)
+                    {
+                        Session["user_type"] = person.UserTypeID;
+                        return RedirectToLocal(returnUrl);
+                    }
+                    return View("login");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

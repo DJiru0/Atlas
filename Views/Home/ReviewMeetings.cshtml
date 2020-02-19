@@ -103,7 +103,7 @@
                                         <td>
                                             <table class="table">
 
-                                                @foreach (var t in @i.Resources)
+                                                @foreach (var t in @i.Meeting.Resources)
                                                 {
                                                 <tr>
                                                     <td>
@@ -130,7 +130,7 @@
                                                 </tr>
                                                 }
 
-                                                @if (@i.Resources.Count == 0)
+                                                @if (@i.Meeting.Resources.Count == 0)
                                                 {
                                                     <tr><td>None Requested</td></tr>
                                                 }

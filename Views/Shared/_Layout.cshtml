@@ -25,25 +25,32 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
                     @using Microsoft.AspNet.Identity
                     @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Meeting", "Meetings", "Home")</li>
+                        @*if (Session["user_type"] != null)
+            {
+                if (Convert.ToInt32(Session["user_type"].ToString()) != 2)
+                {
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                }
+            }*@
                         if (Session["user_type"] != null)
                         {
-                            if (Convert.ToInt32(Session["user_type"].ToString()) != 6)
+                            if (Convert.ToInt32(Session["user_type"].ToString()) != 2)
                             {
-
+                                <li>@Html.ActionLink("Meetings", "Meetings", "Home")</li>
                                 <li>@Html.ActionLink("My Meetings", "Reservation", "Home")</li>
                             }
                         }
                         if (Session["user_type"] != null)
                         {
-                            if (Convert.ToInt32(Session["user_type"].ToString()) == 6)
+                            if (Convert.ToInt32(Session["user_type"].ToString()) == 2)
                             {
-
                                 <li>@Html.ActionLink("Resources", "Resources", "Home")</li>
-                                <li>@Html.ActionLink("Review Meetings", "ReviewMeetings", "Home")</li>
+                                <li>@Html.ActionLink("Review Meetingss", "ReviewMeetings", "Home")</li>
                             }
                         }
                     }
@@ -52,7 +59,7 @@
             </div>
         </div>
     </div>
-
+    <br />
     <div class="container body-content">
         @RenderBody()
 

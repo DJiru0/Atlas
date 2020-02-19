@@ -2,7 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
-    <div class="jumbotron" style="margin: 0;padding: 5vh;padding-top: 28vh;padding-bottom: 10vh;background:url(https://cocktailzindagi.com/wp-content/uploads/2017/05/o-ATLAS-SHRUGGED-facebook-768x384.jpg);background-size:cover">
+    <div class="jumbotron" style="margin: 0;padding: 5vh;padding-top: 28vh;padding-bottom: 10vh;background:url(../Content/o-ATLAS-SHRUGGED-facebook.jpg);background-size:cover">
         <div class="row">
             <div class="col-md-7">
                 <h1 style="font-size: 12vh;color:white">ATLAS</h1>
@@ -21,7 +21,10 @@
             </div>
         </div>
     </div>
-<br />
+<br />@if(User.Identity.IsAuthenticated == true)
+{
+<p>authenticated!!</p>
+}
 <div class="container">
     <div class="row text-center">
         <div class="col-md-4">

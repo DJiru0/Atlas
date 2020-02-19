@@ -14,6 +14,7 @@ namespace Atlas.Models.AltasModel
         {
             Attendees = new HashSet<Attendee>();
             ReqResources = new HashSet<ReqResource>();
+            Resources = new HashSet<Resource>();
         }
 
         public int MeetingId { get; set; }
@@ -50,5 +51,8 @@ namespace Atlas.Models.AltasModel
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReqResource> ReqResources { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Resource> Resources { get; set; }
     }
 }

@@ -47,7 +47,7 @@ namespace Atlas.Filter
                 if(theUser != null)
                 {
                     var person = db.Users.Where(u => u.ApplicationUserId == theUser.ToString()).FirstOrDefault();
-                    if (theUser != null && theUserType != null && person.UserTypeID != 6)
+                    if (theUser != null && theUserType != null && person.UserTypeID != 2)
                         return false;
                     else
                         return true;
